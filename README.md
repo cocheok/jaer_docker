@@ -2,58 +2,33 @@
 
 ## Install
 
-
-Create the Dockerfile file with the following content.
-
-### Dockerfile
+1- Check out the code
 
 ```
-FROM java:7
-RUN apt-get -y update && apt-get -y upgrade
-RUN apt-get -y install udev
-RUN apt-get install subversion
-ADD ./rules/65-inilabs.rules /etc/udev/rules.d/65-inilabs.rules
-ADD ./rules/66-inilabs_dev.rules /etc/udev/rules.d/66-inilabs_dev.rules
-RUN cd /usr/src/
-RUN svn checkout https://svn.code.sf.net/p/jaer/code
-WORKDIR /usr/src/code/jAER/trunk/
-CMD ["udevadm control --reload"]
+git clone git@github.com:cocheok/jaer_docker.git
 ```
 
-We can build the image using the following command
+2- Build the docker image using the following command
 
 ```
   docker build -t dvs .
 ```
 
+   We can check that the image exist using the following command
+
+```
+  docker images dvs
+```
 
 
-Then we can create the container with the following command:
+3- Then we can create the container of the dvs image using the following command:
+
 ´´´
 docker run -d -t -it --name dvs_container --net host -v ./data:/data --privileged -e DISPLAY=$DISPLAY dvs
 
 ´´´
 
-Or we can create the container as a docker-compose service using the docker-compose.yml file:
-
-### docker-compose.yml
-
-```
-version: '2'
-
-services:
-  dvs:
-    image: dvs
-    volumes:
-      - ./data:/data
-    environment:
-      - DISPLAY=$DISPLAY
-    network_mode: "host"
-    privileged: true
-
-```
-
-To run the docker-compose use the following command
+Or we can create the container of the dvs image as a docker-compose service using the following command:
 
 ```
 docker-compose up
