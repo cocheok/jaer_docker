@@ -1,4 +1,4 @@
-#DVS 128
+#jAER - Java tools for AER
 
 ## Install
 
