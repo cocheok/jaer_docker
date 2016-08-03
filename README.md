@@ -43,7 +43,7 @@ version: '2'
 
 services:
   dvs:
-    image: dvs2
+    image: dvs
     volumes:
       - ./data:/data
     environment:
