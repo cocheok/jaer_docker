@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  dvs:
+    image: dvs2
+    volumes:
+      - ./data:/data
+    environment:
+      - DISPLAY=$DISPLAY
+    network_mode: "host"
+    privileged: true
