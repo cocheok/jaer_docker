@@ -7,8 +7,7 @@ Create the Dockerfile file with the following content.
 
 ### Dockerfile
 
-´´´
-
+```
 FROM java:7
 RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get -y install udev
@@ -19,16 +18,13 @@ RUN cd /usr/src/
 RUN svn checkout https://svn.code.sf.net/p/jaer/code
 WORKDIR /usr/src/code/jAER/trunk/
 CMD ["udevadm control --reload"]
-
-´´´
+```
 
 We can build the image using the following command
 
-´´´
-
+```
   docker build -t dvs .
-
-´´´
+```
 
 
 
@@ -38,11 +34,11 @@ docker run -d -t -it --name dvs_container --net host -v ./data:/data --privilege
 
 ´´´
 
-To create the container as a service we can use docker-compose.yml:
+Or we can create the container as a docker-compose service using the docker-compose.yml file:
 
 ### docker-compose.yml
 
-´´´
+```
 version: '2'
 
 services:
@@ -55,10 +51,10 @@ services:
     network_mode: "host"
     privileged: true
 
-´´´
+```
 
-To run the docker-compose
+To run the docker-compose use the following command
 
-´´´
+```
 docker-compose up
-´´´
+```
