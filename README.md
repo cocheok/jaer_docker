@@ -1,4 +1,4 @@
-#jAER - Java tools for AER
+# jAER - Java tools for AER
 
 ## Install
 
